@@ -18,7 +18,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/index.js",
-    "build": "rimraf dist && tsc",
+    "build": "tsc",
     "dev": "concurrently \"tsc -w\" \"nodemon dist/index.js\""
   },
   "dependencies": {
@@ -43,7 +43,7 @@
     "@types/swagger-ui-express": "^4.1.8",
     "concurrently": "^9.2.1",
     "nodemon": "^3.1.10",
-    "rimraf": "^6.0.1",
+    "rimraf": "^6.1.0",
     "typescript": "^5.8.3"
   }
 }
