@@ -7,7 +7,9 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 const getServerUrl = () => {
   if (NODE_ENV === 'production') {
     // Use the actual deployed URL (Render provides this)
-    return process.env.RENDER_EXTERNAL_URL || `https://your-app.onrender.com`;
+    return (
+      process.env.RENDER_EXTERNAL_URL || `https://email-api-kdxj.onrender.com`
+    );
   }
   return `http://localhost:${PORT}`;
 };
