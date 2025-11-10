@@ -1,6 +1,16 @@
 import swaggerJSDoc from 'swagger-jsdoc';
 
 const PORT = process.env.PORT || 3000;
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+// Determine the server URL based on environment
+const getServerUrl = () => {
+  if (NODE_ENV === 'production') {
+    // Use the actual deployed URL (Render provides this)
+    return process.env.RENDER_EXTERNAL_URL || `https://your-app.onrender.com`;
+  }
+  return `http://localhost:${PORT}`;
+};
 
 const options: swaggerJSDoc.Options = {
   definition: {
@@ -17,15 +27,20 @@ const options: swaggerJSDoc.Options = {
     },
     servers: [
       {
-        url: `http://localhost:${PORT}`,
-        description: 'Development server',
+        url: getServerUrl(),
+        description:
+          NODE_ENV === 'production'
+            ? 'Production server'
+            : 'Development server',
       },
     ],
     tags: [
       { name: 'Email', description: 'Email sending and management endpoints' },
     ],
   },
-  apis: ['./src/routes/*.ts'],
+  // Use different paths for development vs production
+  apis:
+    NODE_ENV === 'production' ? ['./dist/routes/*.js'] : ['./src/routes/*.ts'],
 };
 
 export const swaggerSpec = swaggerJSDoc(options);
