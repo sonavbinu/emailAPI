@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import { connectDB } from './config/db';
-import { getEnvVariable } from './utils/helpers';
 import emailRoutes from './routes/emailRoutes';
 import { verifyEmailConnection } from './config/email';
 import cookieParser from 'cookie-parser';
@@ -19,8 +18,8 @@ verifyEmailConnection();
 // Middlewares
 app.use(
   cors({
-    origin: [getEnvVariable('FRONT_END_URL')],
-    credentials: true,
+    origin: '*', // Allow all origins (you can restrict this later)
+    credentials: false,
   })
 );
 
