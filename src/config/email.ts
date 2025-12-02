@@ -25,7 +25,7 @@ export const verifyEmailConnection = async () => {
   try {
     await transporter.verify();
     console.log('Email service is ready to send emails');
-  } catch (error) {
-    console.log('Email service connection failed:', error);
+  } catch (error: any) {
+    console.log('Email service connection failed:', error.message);
   }
 };
