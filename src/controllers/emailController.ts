@@ -95,7 +95,7 @@ export const getEmailById = async (req: Request, res: Response) => {
       return;
     }
     res.status(200).json({
-      success: false,
+      success: true,
       data: email,
     });
   } catch (error) {
